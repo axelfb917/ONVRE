@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Qué define ser un ONVRE?</title>
+    <meta name="description"
+        content="Una encuesta científica (no muy científica) sobre las características de un onvre.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Emoji Picker Element -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+</head>
+
+<body>
+    <div class="background-effects">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <main class="app-container glass-panel">
+
+        <!-- PANTALLA 1: Inicio y Emoji -->
+        <section id="screen-start" class="screen active">
+            <header>
+                <h1 id="title-main" style="user-select: none; cursor: default;">¿Qué define verdaderamente a un <span
+                        class="highlight">ONVRE</span>?</h1>
+                <p>Vota las características que para ti definen ser un 'onvre'.</p>
+            </header>
+
+            <div class="emoji-selector">
+                <p style="margin-bottom: 0.5rem; font-weight: 600;">Selecciona tu emoji:</p>
+                <div id="selected-emoji-display" class="big-emoji" style="margin-bottom: 1rem; min-height: 4rem;"></div>
+                <emoji-picker class="light"></emoji-picker>
+            </div>
+
+            <button id="btn-start" class="btn primary" disabled>Comenzar Encuesta</button>
+        </section>
+
+        <!-- PANTALLA 2: Preguntas y Agregar Característica -->
+        <section id="screen-questions" class="screen hidden">
+            <header>
+                <h2>Muro de Características</h2>
+                <p>Vota si estas actitudes definen a un onvre.</p>
+            </header>
+
+            <div class="questions-list" id="questions-list">
+                <!-- Preguntas generadas por JS -->
+            </div>
+
+            <!-- Agregar característica propia -->
+            <div class="custom-trait-section">
+                <h3>Aporta a la lista</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">¿Faltó alguna? Escribe esa cosa
+                    inconfundible.</p>
+                <div class="input-group">
+                    <textarea id="custom-trait-input" rows="2" placeholder="Ej. Ser infiel"></textarea>
+                    <button id="btn-add-trait" class="btn outline" style="margin-top: 0.5rem;" disabled>Añadir al
+                        Muro</button>
+                </div>
+            </div>
+
+            <button id="btn-continue" class="btn primary" disabled>Ver Resultados</button>
+        </section>
+
+        <!-- PANTALLA 4: Resultados -->
+        <section id="screen-results" class="screen hidden">
+            <header>
+                <h2>Consenso <span class="highlight">Global</span></h2>
+                <p>Estas son las actitudes más votadas por la comunidad.</p>
+            </header>
+
+            <div class="result-card">
+                <div class="user-identity" style="margin-bottom: 1.5rem;">
+                    <span id="result-emoji" class="big-emoji"></span>
+                    <h3>Gracias por tu contribución</h3>
+                    <p style="margin-bottom: 0;">Tu voto ha actualizado los resultados en vivo.</p>
+                </div>
+
+                <div class="top-traits" id="top-traits-container"
+                    style="text-align: left; margin-bottom: 1.5rem; max-height: 200px; overflow-y: auto; padding-right: 10px;">
+                    <!-- Top traits injected here -->
+                </div>
+
+                <div class="pie-chart-container" style="position: relative; height: 250px; width: 100%;">
+                    <canvas id="results-pie-chart"></canvas>
+                </div>
+            </div>
+
+            <button id="btn-restart" class="btn secondary outline">Volver a intentar</button>
+        </section>
+
+        <!-- PANTALLA 5: Admin (Oculta) -->
+        <section id="screen-admin" class="screen hidden">
+            <header>
+                <h2>Terminal de <span class="highlight">Control</span></h2>
+                <p>Modo Administrador Activo. Ten cuidado.</p>
+            </header>
+
+            <div class="admin-panel"
+                style="text-align: left; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 1rem; border: 1px dashed var(--accent-color);">
+                <div id="admin-list"
+                    style="max-height: 50vh; overflow-y: auto; padding-right: 10px; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <!-- Items inyectados por JS -->
+                </div>
+            </div>
+
+            <button id="btn-admin-reset" class="btn outline"
+                style="margin-top: 1rem; color: #ef4444; border-color: #ef4444;">Resetear Todos los Votos</button>
+            <button id="btn-admin-close" class="btn primary" style="margin-top: 0.5rem;">Cerrar Terminal</button>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
