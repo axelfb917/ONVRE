@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Emoji Picker Element -->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
     <!-- Firebase SDK (Compat Version for Vanilla JS) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
@@ -38,13 +36,9 @@
                 <p>Vota las características que para ti definen ser un 'onvre'.</p>
             </header>
 
-            <div class="emoji-selector">
-                <p style="margin-bottom: 0.5rem; font-weight: 600;">Selecciona tu emoji:</p>
-                <div id="selected-emoji-display" class="big-emoji" style="margin-bottom: 1rem; min-height: 4rem;"></div>
-                <emoji-picker class="light"></emoji-picker>
+            <div style="margin-top: 2rem;">
+                <button id="btn-start" class="btn primary">Comenzar Encuesta</button>
             </div>
-
-            <button id="btn-start" class="btn primary" disabled>Comenzar Encuesta</button>
         </section>
 
         <!-- PANTALLA 2: Preguntas y Agregar Característica -->
@@ -82,7 +76,6 @@
 
             <div class="result-card">
                 <div class="user-identity" style="margin-bottom: 1.5rem;">
-                    <span id="result-emoji" class="big-emoji"></span>
                     <h3>Gracias por tu contribución</h3>
                     <p style="margin-bottom: 0;">Tu voto ha actualizado los resultados en vivo.</p>
                 </div>
