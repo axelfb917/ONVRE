@@ -52,7 +52,6 @@ let sessionVotes = {}; // { index: 'aplica'/'no-aplica' }
 
 // Estado de la aplicación
 let state = {
-    emoji: '',
     answersList: {}, // Guarda { index: 'aplica'/'no-aplica' }
     pieChartInstance: null
 };
@@ -71,7 +70,6 @@ const adminList = document.getElementById('admin-list');
 const btnAdminClose = document.getElementById('btn-admin-close');
 const btnAdminReset = document.getElementById('btn-admin-reset');
 
-const emojiPicker = document.querySelector('emoji-picker');
 const btnStart = document.getElementById('btn-start');
 
 const questionsListContainer = document.getElementById('questions-list');
@@ -79,7 +77,6 @@ const btnContinue = document.getElementById('btn-continue');
 const customTraitInput = document.getElementById('custom-trait-input');
 const btnAddTrait = document.getElementById('btn-add-trait');
 
-const resultEmoji = document.getElementById('result-emoji');
 const statAplica = document.getElementById('stat-aplica');
 const statLevel = document.getElementById('stat-level');
 const btnRestart = document.getElementById('btn-restart');
@@ -184,12 +181,6 @@ function attachEventListeners() {
         }
     });
 
-    emojiPicker.addEventListener('emoji-click', event => {
-        state.emoji = event.detail.unicode;
-        document.getElementById('selected-emoji-display').textContent = state.emoji;
-        checkStartBtn();
-    });
-
     btnStart.addEventListener('click', () => {
         switchScreen('start', 'questions');
     });
@@ -262,9 +253,7 @@ function attachEventListeners() {
     });
 }
 
-function checkStartBtn() {
-    btnStart.disabled = !state.emoji;
-}
+// Eliminated checkStartBtn
 
 function checkContinueBtn() {
     const answeredCount = Object.keys(state.answersList).length;
@@ -294,7 +283,6 @@ function showInlineChart(index) {
 }
 
 function showResults() {
-    resultEmoji.textContent = state.emoji;
 
     // Calcular totales usando globalStats
     let combinedStats = questions.map((q, index) => {
@@ -395,12 +383,10 @@ function switchScreen(fromId, toId) {
 }
 
 function resetState() {
-    state.emoji = '';
     state.answersList = {};
     if (state.pieChartInstance) state.pieChartInstance.destroy();
 
-    document.getElementById('selected-emoji-display').textContent = '';
-    btnStart.disabled = true;
+    btnStart.disabled = false;
     btnContinue.disabled = true;
     btnAddTrait.disabled = true;
 
