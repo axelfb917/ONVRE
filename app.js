@@ -131,15 +131,18 @@ function appendQuestion(q, index) {
     const item = document.createElement('div');
     item.className = 'question-item';
 
+    const isAplica = sessionVotes[index] === 'aplica' ? 'checked' : '';
+    const isNoAplica = sessionVotes[index] === 'no-aplica' ? 'checked' : '';
+
     item.innerHTML = `
         <h3>"${q}"</h3>
         <div class="poll-options">
             <div class="poll-option">
-                <input type="radio" id="q${index}-aplica" name="q${index}" value="aplica">
+                <input type="radio" id="q${index}-aplica" name="q${index}" value="aplica" ${isAplica}>
                 <label for="q${index}-aplica">✅ Aplica</label>
             </div>
             <div class="poll-option">
-                <input type="radio" id="q${index}-no-aplica" name="q${index}" value="no-aplica">
+                <input type="radio" id="q${index}-no-aplica" name="q${index}" value="no-aplica" ${isNoAplica}>
                 <label for="q${index}-no-aplica">❌ No aplica</label>
             </div>
         </div>
@@ -156,6 +159,11 @@ function appendQuestion(q, index) {
     `;
 
     questionsListContainer.appendChild(item);
+
+    // Re-mostrar gráfica si ya se votó previamente
+    if (sessionVotes[index]) {
+        showInlineChart(index);
+    }
 }
 
 function attachEventListeners() {
@@ -298,9 +306,11 @@ function showResults() {
     // Calcular totales usando globalStats
     let combinedStats = questions.map((q, index) => {
         let aplica = globalStats[index].aplica;
+        let noAplica = globalStats[index].noAplica;
         return {
             trait: q,
-            aplica: aplica
+            aplica: aplica,
+            noAplica: noAplica
         };
     });
 
@@ -322,8 +332,12 @@ function showResults() {
         div.style.border = '1px solid var(--glass-border)';
         div.innerHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 600; color: var(--text-primary);">#${i + 1} ${item.trait.length > 30 ? item.trait.substring(0, 30) + '...' : item.trait}</span>
-                <span style="color: var(--primary-color); font-weight: 800;">${item.aplica} votos</span>
+                <span style="font-weight: 600; color: var(--text-primary); margin-right: 10px;">#${i + 1} ${item.trait.length > 30 ? item.trait.substring(0, 30) + '...' : item.trait}</span>
+                <span style="font-size: 0.95rem; white-space: nowrap;">
+                    <span style="color: var(--primary-color); font-weight: 800;" title="Aplica">✅ ${item.aplica}</span>
+                    <span style="color: var(--text-secondary); margin: 0 4px; opacity: 0.5;">|</span>
+                    <span style="color: var(--accent-color); font-weight: 800;" title="No Aplica">❌ ${item.noAplica}</span>
+                </span>
             </div>
         `;
         topTraitsContainer.appendChild(div);
