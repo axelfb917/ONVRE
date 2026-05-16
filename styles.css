@@ -2,10 +2,10 @@
     --bg-color: #f1f5f9; /* Light slate background */
     --text-primary: #1e293b; /* Dark Slate */
     --text-secondary: #475569; /* Slate Gray */
-    --accent-color: #ec4899; /* Pink */
-    --accent-hover: #db2777;
-    --primary-color: #3b82f6; /* Blue */
-    --primary-hover: #2563eb;
+    --accent-color: #3b82f6; /* Blue */
+    --accent-hover: #2563eb;
+    --primary-color: #ec4899; /* Pink */
+    --primary-hover: #db2777;
     
     --glass-bg: rgba(255, 255, 255, 0.85);
     --glass-border: rgba(0, 0, 0, 0.1);
@@ -118,7 +118,7 @@ p {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
+    border: 2px solid rgba(139, 92, 246, 0.4); /* Toque morado en el contorno */
     border-radius: var(--border-radius);
     padding: 2.5rem 2rem;
     box-shadow: var(--glass-shadow);

@@ -71,6 +71,7 @@ const btnAdminClose = document.getElementById('btn-admin-close');
 const btnAdminReset = document.getElementById('btn-admin-reset');
 
 const btnStart = document.getElementById('btn-start');
+const btnViewResults = document.getElementById('btn-view-results');
 
 const questionsListContainer = document.getElementById('questions-list');
 const btnContinue = document.getElementById('btn-continue');
@@ -160,8 +161,13 @@ function appendQuestion(q, index) {
 function attachEventListeners() {
     // Admin Mode Trigger
     titleMain.addEventListener('dblclick', () => {
-        switchScreen('start', 'admin');
-        renderAdminList();
+        const pwd = prompt("Terminal bloqueada. Ingresa la contraseña:");
+        if (pwd === "1234") {
+            switchScreen('start', 'admin');
+            renderAdminList();
+        } else if (pwd !== null) {
+            alert("Contraseña incorrecta.");
+        }
     });
 
     btnAdminClose.addEventListener('click', () => {
@@ -183,6 +189,11 @@ function attachEventListeners() {
 
     btnStart.addEventListener('click', () => {
         switchScreen('start', 'questions');
+    });
+
+    btnViewResults.addEventListener('click', () => {
+        switchScreen('start', 'results');
+        showResults();
     });
 
     questionsListContainer.addEventListener('change', (e) => {

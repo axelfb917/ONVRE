@@ -33,18 +33,23 @@
             <header>
                 <h1 id="title-main" style="user-select: none; cursor: default;">¿Qué define verdaderamente a un <span
                         class="highlight">ONVRE</span>?</h1>
-                <p>Vota las características que para ti definen ser un 'onvre'.</p>
+                <p style="margin-bottom: 1rem;">Cada mujer tiene una opinión distinta sobre lo que significa ser un
+                    'onvre'. Esta plataforma anónima nos permite descubrir, en conjunto, qué actitudes y comportamientos
+                    son los que verdaderamente predominan a la hora de usar este término.</p>
+                <p style="font-weight: 600; color: var(--primary-color);">Vota las características existentes o añade
+                    las tuyas.</p>
             </header>
 
-            <div style="margin-top: 2rem;">
+            <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
                 <button id="btn-start" class="btn primary">Comenzar Encuesta</button>
+                <button id="btn-view-results" class="btn secondary outline">Ver Resultados en Vivo</button>
             </div>
         </section>
 
         <!-- PANTALLA 2: Preguntas y Agregar Característica -->
         <section id="screen-questions" class="screen hidden">
             <header>
-                <h2>Muro de Características</h2>
+                <h2>Muro</h2>
                 <p>Vota si estas actitudes definen a un onvre.</p>
             </header>
 
@@ -71,7 +76,7 @@
         <section id="screen-results" class="screen hidden">
             <header>
                 <h2>Consenso <span class="highlight">Global</span></h2>
-                <p>Estas son las actitudes más votadas por la comunidad.</p>
+                <p>Estas son las actitudes más votadas.</p>
             </header>
 
             <div class="result-card">
@@ -96,8 +101,8 @@
         <!-- PANTALLA 5: Admin (Oculta) -->
         <section id="screen-admin" class="screen hidden">
             <header>
-                <h2>Terminal de <span class="highlight">administrador</span></h2>
-                <p>Modo Administrador.</p>
+                <h2>Panel de <span class="highlight">administrador</span></h2>
+                <p>------------------</p>
             </header>
 
             <div class="admin-panel"
